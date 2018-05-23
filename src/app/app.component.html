@@ -1,0 +1,54 @@
+<div class="parent">
+
+  <div class="header">
+    <span class="searchIcon"></span>
+    <input class="search" type="text" placeholder="Search" [(ngModel)]="searchText" (input)="search()" />
+    <span class="clearIcon"></span>
+
+    <div class="identity">
+      <span class="username">New User</span>
+      <div class="propic"></div>
+    </div>
+
+  </div>
+
+  <div class="sideBar">
+    <div class="contact" [style.background]="selectedPersonNo === i ? '#E6E6E6' : 'inherit'" *ngFor="let person of persons; let i = index"
+      (click)="onSelect(i, person)">
+      <span>{{ person.name }}</span>
+      <span *ngIf="selectedPersonNo === i" class="rt-arrow">►</span>
+    </div>
+  </div>
+
+  <div class="details">
+
+    <div class="profile" *ngIf="showtable">
+
+      <div class="photo" [ngStyle]="{'background-image': 'url(' + selectedPerson.img + ')'}"></div>
+
+      <button class="sendMessage">
+        SEND MESSAGE!
+      </button>
+
+      <div class="heartWrapper">
+        <div *ngFor="let item of [1,2,3,4,5];" class="heart" [ngClass]="item <= selectedPerson.rating ? 'selected' : ''"></div>
+      </div>
+
+      <div class="description"> {{selectedPerson.Description}}</div>
+
+      <div class="likesDislikes">
+        <div class="likesHeader">Likes</div>
+        <div class="likes">
+          <div class="item" *ngFor="let like of selectedPerson.Likes">{{ like }}</div>
+        </div>
+        <div class="dislikesHeader">Dislikes</div>
+        <div class="dislikes">
+          <div class="item" *ngFor="let dislike of selectedPerson.Dislikes">{{ dislike }}</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
